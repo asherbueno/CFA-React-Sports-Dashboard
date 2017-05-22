@@ -30,7 +30,7 @@ class App extends Component {
         this.setState({players: json.league.standard});
         console.log(json.league);
       });
-  }
+}
 
   getTeams() {
     const URL = 'http://data.nba.net/data/10s/prod/v1/2016/teams.json'
