@@ -9,6 +9,7 @@
     "react-addons-css-transition-group": "^15.5.2",
     "react-addons-transition-group": "^15.5.2",
     "react-dom": "^15.5.4",
+    "react-fetch": "^0.0.9",
     "react-token-autocomplete": "^0.5.3",
     "reactstrap": "^4.6.2"
   },
