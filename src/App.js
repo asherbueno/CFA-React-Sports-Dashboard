@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
+import Players from './components/Players';
 
 class App extends Component {
   constructor(props) {
@@ -8,19 +8,32 @@ class App extends Component {
     this.state = {
       teams: [],
       players: [],
-      games: []
+      games: [],
+      now: new Date()
     }
   }
 
-  ComponentWillMount() {
+  componentWillMount() {
+    this.getPlayers()
 
   };
 
+  getPlayers() {
+    const URL = `http://data.nba.net/data/10s/prod/v1/2016/players.json`
+    fetch(URL)
+      .then((res) => {
+        return res.json();
+      })
+      .then((json) => {
+        this.setState({players: json.league.standard});
+        console.log(json.league);
+      });
+  };
 
   render() {
     return (
       <div className="App">
-
+        <Players players={this.state.players} />
       </div>
     );
   }
