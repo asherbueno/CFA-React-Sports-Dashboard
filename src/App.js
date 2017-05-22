@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
 import './App.css';
 import Players from './components/Players';
-=======
 import Teams from './components/Teams';
->>>>>>> upstream/master
 
 class App extends Component {
   constructor(props) {
