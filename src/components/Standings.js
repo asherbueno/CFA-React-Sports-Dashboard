@@ -5,7 +5,7 @@ const Players = (props) => {
   return (
     <div>
       <ol className=''>
-          { props.teams.map((stand, i)=> <li key={ i } className=''> { props.teams.map( team => {
+          { props.standings.map((stand, i)=> <li key={ i } className=''> { props.teams.map( team => {
               if(team.teamId === stand.teamId) {
                 return team.fullName
               }
