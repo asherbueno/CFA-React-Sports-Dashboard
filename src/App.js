@@ -12,9 +12,10 @@ class App extends Component {
     }
   }
 
-ComponentWillMount() {
+  ComponentWillMount() {
 
-};
+  };
+
 
   render() {
     return (
