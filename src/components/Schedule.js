@@ -6,16 +6,7 @@ const Schedule = (props) => {
     <Card>
       <div>
         <h2>Schedule</h2>
-      <p>asdfasdfsadf</p>
-      <p>asdfasdfsadf</p>
 
-      <p>asdfasdfsadf</p>
-
-      <p>asdfasdfsadf</p>
-      <p>asdfasdfsadf</p>
-      <p>asdfasdfsadf</p>
-      <p>asdfasdfsadf</p>
-      <p>asdfasdfsadf</p>
       </div>
     </Card>
   )

@@ -27,9 +27,9 @@ class App extends Component {
   }
 
   componentWillMount() {
-    this.getPlayers();
-    this.getTeams();
-    this.getStandings();
+    // this.getPlayers();
+    // this.getTeams();
+    // this.getStandings();
     this.getTeamSchedule()
 
   };
@@ -44,10 +44,9 @@ getTeamSchedule() {
     })
     .then((json) => {
       this.setState({ schedule: json.league.standard});
-      console.log(this.state.schedule);
-
+      console.log('vteam', json.league.standard[0].vTeam);
     })
-    .then(function (error) {
+    .catch(function (error) {
       console.log(error);
     });
 };
@@ -72,7 +71,7 @@ getTeamSchedule() {
       })
       .then((json) => {
         this.setState({teams: json.league.standard});
-        console.log(json.league.standard);
+        console.log('standard getTeams', json.league.standard[0]);
       });
   };
 
@@ -87,8 +86,8 @@ getTeamSchedule() {
         return res.json();
       })
       .then((json) => {
-        this.setState({standings: json.league.standard.teams});
-        console.log(json.league.standard);
+        this.setState({standings: json.league.standard});
+        console.log('getStandings', json.league.standard[0]);
       });
   };
 
@@ -121,14 +120,14 @@ getTeamSchedule() {
 
             <Row>
               <Col xs="4">
-
-              <Schedule />
-            </Col>
+                <Schedule />
+              </Col>
 
             <Col xs="4">
+              <PreviousGame schedule={this.state.schedule} />
 
-            <PreviousGame />
-          </Col>
+            </Col>
+
           <Col xs="4">
             <TeamStats />
           </Col>
