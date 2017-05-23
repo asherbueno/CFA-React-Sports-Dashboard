@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Players = (props) => {
+const Standings = (props) => {
   return (
     <div>
       <ol className=''>
@@ -16,8 +16,8 @@ const Players = (props) => {
   );
 };
 
-Players.propTypes = {
+Standings.propTypes = {
   standings: PropTypes.array.isRequired
 };
 
-export default Players;
+export default Standings;

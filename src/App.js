@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
-import Players from './components/Players';
+// import Players from './components/Players';
 import Teams from './components/Teams';
-import Standings from './components/Standings';
+// import Standings from './components/Standings';
+import GetTeam from './components/GetTeam';
+import { Container, Row, Col, Navbar, NavbarBrand } from 'reactstrap';
+import Schedule from './components/Schedule';
+import PreviousGame from './components/PreviousGame';
+import TeamStats from './components/TeamStats';
+
 
 class App extends Component {
   constructor(props) {
@@ -11,7 +17,8 @@ class App extends Component {
       teams: [],
       players: [],
       games: [],
-      standings:[],
+      schedule: [],
+      standings: [],
       west: [],
       east: [],
       year: new Date().getFullYear() -1
@@ -23,7 +30,27 @@ class App extends Component {
     this.getPlayers();
     this.getTeams();
     this.getStandings();
+    this.getTeamSchedule()
+
   };
+
+
+
+getTeamSchedule() {
+  const URL = "http://data.nba.net/data/10s/prod/v1/2016/teams/blazers/schedule.json";
+  fetch(URL)
+    .then((response) => {
+      return response.json();
+    })
+    .then((json) => {
+      this.setState({ schedule: json.league.standard});
+      console.log(this.state.schedule);
+
+    })
+    .then(function (error) {
+      console.log(error);
+    });
+};
 
   getPlayers() {
     const URL = `http://data.nba.net/data/10s/prod/v1/${this.state.year}/players.json`
@@ -49,6 +76,10 @@ class App extends Component {
       });
   };
 
+  // selectTeam = teams => {
+  //     return team === team.name;
+  // }
+
   getStandings() {
     const URL = `http://data.nba.net/data/10s/prod/v1/current/standings_all.json`
     fetch(URL)
@@ -61,24 +92,53 @@ class App extends Component {
       });
   };
 
-  getConferences() {
-    const west = this.state.standings.filter((team) => {
-      return team === 'west';
-    });
-    const east= this.state.standings.filter((team) => {
-      return team === 'east';
-    });
-
-  }
+  // getConferences() {
+  //   this.state.standings.filter((team) => {
+  //     return team === 'west';
+  //     west.push({team});
+  //   });
+  //   const east = this.state.standings.filter((team) => {
+  //     return team === 'east';
+  //     east.push({team});
+  //   });
+  //
+  // }
 
   render() {
     return (
-      <div className="App">
-        <Players players={this.state.players} teams={this.state.teams} />
-        <Standings standings={this.state.standings} teams={this.state.teams} west={this.state.west} east={this.state.east} />
-      </div>
+      <Container fluid>
+        <Navbar light toggleable>
+          <NavbarBrand href="/">NBA Dashboard</NavbarBrand>
+        </Navbar>
+          <Row>
+          <Col xs="3">
+            <GetTeam teams={this.state.teams} />
+          </Col>
+            <Col xs="9">
+              <h2>TEAM NAME</h2>
+            </Col>
+          </Row>
+
+            <Row>
+              <Col xs="4">
+
+              <Schedule />
+            </Col>
+
+            <Col xs="4">
+
+            <PreviousGame />
+          </Col>
+          <Col xs="4">
+            <TeamStats />
+          </Col>
+          </Row>
+        {/* <Teams teams={this.state.teams} /> */}
+        {/* <Players players={this.state.players} teams={this.state.teams} />
+        <Standings standings={this.state.standings} teams={this.state.teams} west={this.state.west} east={this.state.east} /> */}
+      </Container>
     );
   }
-}
+};
 
 export default App;
