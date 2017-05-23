@@ -7,7 +7,7 @@ import GetTeam from './components/GetTeam';
 import { Container, Row, Col, Navbar, NavbarBrand } from 'reactstrap';
 import Schedule from './components/Schedule';
 import PreviousGame from './components/PreviousGame';
-import TeamStats from './components/PreviousGame';
+import TeamStats from './components/TeamStats';
 
 
 class App extends Component {
@@ -110,26 +110,32 @@ getTeamSchedule() {
         <Navbar light toggleable>
           <NavbarBrand href="/">NBA Dashboard</NavbarBrand>
         </Navbar>
-        <Row>
-          <h2>TEAM NAME</h2>
-        </Row>
-        <Row>
+          <Row>
           <Col xs="3">
             <GetTeam teams={this.state.teams} />
           </Col>
-          <Col xs="3">
-            <Schedule />
-          </Col>
-          <Col xs="3">
+            <Col xs="9">
+              <h2>TEAM NAME</h2>
+            </Col>
+          </Row>
+
+            <Row>
+              <Col xs="4">
+
+              <Schedule />
+            </Col>
+
+            <Col xs="4">
+
             <PreviousGame />
           </Col>
-          <Col xs="3">
+          <Col xs="4">
             <TeamStats />
           </Col>
+          </Row>
         {/* <Teams teams={this.state.teams} /> */}
         {/* <Players players={this.state.players} teams={this.state.teams} />
         <Standings standings={this.state.standings} teams={this.state.teams} west={this.state.west} east={this.state.east} /> */}
-        </Row>
       </Container>
     );
   }
