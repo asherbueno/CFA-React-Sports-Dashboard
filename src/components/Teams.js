@@ -10,7 +10,7 @@ const Teams = (props) => {
     </div>
   );
 };
-Teams.propTypes = {
+Teams.PropTypes = {
   teams: PropTypes.array.isRequired
 };
 export default Teams;
