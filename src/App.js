@@ -29,7 +29,7 @@ class App extends Component {
       .then((json) => {
         this.setState({players: json.league.standard});
         console.log(json.league);
-  })
+      });
 }
 
   getTeams() {
@@ -40,14 +40,14 @@ class App extends Component {
       })
       .then((json) => {
         this.setState({teams: json.league.standard});
-        console.log(json);
+        console.log(json.league.standard);
       });
   };
 
   render() {
     return (
       <div className="App">
-        <Players players={this.state.players} />
+        <Players players={this.state.players} teams={this.state.teams} />
         <Teams teams={this.state.teams} />
       </div>
     );
